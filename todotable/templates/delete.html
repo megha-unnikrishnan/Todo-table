@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+   <div class="container">
+       <div class="row">
+           <h4>Are you sure this task<b>{{task2.task}}</b> is done?</b></h4>
+       </div>
+       <button type="submit" class="btn btn-info" name="yes">YES</button>
+           <button type="submit" class="btn btn-info" name="no">No</button>
+
+   </div>
+
+
+</form>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+{% block body %}
+<section class="vh-100 gradient-custom-2" style="background-color: #7e40f6;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card" >
+          <div class="card-header p-3" >
+            <h5 class="mb-0"><i class="fas fa-tasks me-2"></i><b>TASK LIST</b></h5>
+          </div>
+            <div style="margin-left:85%;">
+
+            <a class="btn btn-primary" href="{% url 'add' %}">Add Task</a>
+          </div>
+
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;overflow:scroll">
+
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th >Team Member</th>
+                  <th>Task</th>
+                  <th>Priority</th>
+                  <th >Date</th>
+                  <th >Actions</th>
+                </tr>
+              </thead>
+                <tbody>
+                {% for i in task %}
+                <tr class="fw-normal">
+                    <th>
+                    <span class="ms-2">{{i.name}}</span>
+                  </th>
+                  <td class="align-middle">
+                    <span>{{i.task}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-success">{{i.priority}}</span></h6>
+                  </td>
+                    <td class="align-middle">
+                    <h6 class="mb-0"><span >{{i.date}}</span></h6>
+                  </td>
+                    <td class="align-middle">
+                   <a class="btn btn-danger" href="{% url 'delete' i.id %}">Delete</a>
+                    <a class="btn btn-info"  href="{% url 'update' i.id %}">Update</a>
+                  </td>
+                </tr>
+               {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
